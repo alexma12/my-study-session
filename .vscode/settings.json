@@ -1,10 +1,13 @@
 {
-    "liveSassCompile.settings.formats":[
+    "liveSassCompile.settings.formats": [
         // This is Default.
         {
             "format": "expanded",
             "extensionName": ".css",
-            "savePath": "/css"
+            "savePath": "/src/css"
         },
-    ]
+    ],
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    }
 }

@@ -1,0 +1,66 @@
+
+.PaperBackground {
+    position: absolute;
+    width: calc(100vw - 10rem);
+    background-size: contain ;
+    min-height: calc(100vh - 4rem);
+    margin-bottom: 4rem;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 2rem 2rem 1rem rgba(185, 184, 184, 0.3);
+    font-size: 2rem;
+
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 8rem;
+        height: 100%;
+        width: 2px;
+        background: rgba(255,0,0,0.4);
+        animation: slideDown 1s ease-in;
+    }
+
+    &__text {
+        display: grid;
+        line-height: 2.5rem;
+        outline: none;
+        height: 100%;
+        grid-template-columns: 8rem minmax(max-content,60rem) minmax(max-content, 12rem);
+        grid-template-rows: repeat(auto-fill, 2.5rem);
+    }
+
+    &__lines{
+        margin-top: 4rem;
+        min-height: calc(100vh - 8rem);
+        z-index: 1;
+        width: 100%;
+        background-image: repeating-linear-gradient(white 0px, white 2.4rem, steelblue 2.5rem);
+        animation: slideInLeft 1s ease-in;
+    }
+
+    &__holes{
+        position: absolute;
+        left: 2.6rem;
+        height: 2.5rem;
+        width: 2.5rem;
+        background: $color-yellow-background;
+        border-radius: 50%;
+        box-shadow: inset 0px 0px 2px 0px #888;
+        z-index: 2;
+    
+        &--hole-top {
+            top: 5.5rem;
+        }
+        &--hole-middle {
+            top: 50%;
+        }
+        &--hole-bottom {
+            bottom: 3.5rem;     
+        }
+    }
+   
+}
+
+
+
+

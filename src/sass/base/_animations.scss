@@ -1,0 +1,51 @@
+@keyframes slideInLeft{
+    0%{
+        width: 0;
+    }
+
+    100%{
+        width: 100%;
+    }
+}
+
+@keyframes slideDown{
+    0%{
+        height: 0;
+    }
+
+    100%{
+        height: 100%;
+    }
+}
+
+@keyframes fadeIn {
+    0%{ 
+        opacity: 0;
+    }
+
+    100%{
+        opacity: 1;
+    }
+}
+
+
+.fadeDown-enter{
+    opacity: 0;
+    transform: translateY(-2rem);
+}
+
+.fadeDown-enter-active{
+    opacity: 1;
+    transform: translateY(0rem);
+}
+
+
+
+.fadeLeft-enter{
+    opacity: 0;
+    transform: translateX(-2rem);
+}
+
+.fade-enter{
+    opacity: 0;
+}

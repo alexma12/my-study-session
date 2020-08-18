@@ -1,0 +1,27 @@
+.StudyPartnersSticky{
+    background-image: linear-gradient(to bottom, $color-green-sticky, $color-green-sticky-dark);
+    grid-row: 2/4;
+    min-height: 8rem;
+    width: 80%;
+    border-radius: .2rem;
+    padding: 1rem;
+    transition: all 3s;
+
+    &::before{
+        content: "";
+        display: block;
+        position: absolute;
+        width: 7rem;
+        top: 12%;
+        left: 66%;
+        height: 2.3rem;
+        background-color: $color-tape;
+        z-index: 4;
+    }
+    &--icon{
+        width: 2rem;
+        height: 2rem;
+        margin-left: 1.4rem;
+        transform: translateY(-1rem);
+    }
+}
