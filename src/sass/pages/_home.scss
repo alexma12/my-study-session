@@ -9,13 +9,12 @@
 }
 
 .Information{
-    grid-column: 2/4;
+    grid-column: 2/-1;
     display: grid;
     transition: all 3s;
     justify-items: center;
     position: relative;
-    grid-template-rows: inherit;
-    grid-template-columns: minmax(min-content,42%) minmax(min-content,58%) ;
+    grid-template-columns: minmax(min-content, 44%) minmax(min-content, 56%) ;
 }
 
 .Tasks{
@@ -47,6 +46,17 @@
         &-box{
            margin-top: 3rem; 
            text-align: center;
+        }
+        
+        &-button{
+            background-color: transparent;
+            height: 0rem;
+            border: none;
+            outline: none;
+            
+            &:active{
+                transform: translateY(.2rem);
+            }
         }
 
         &:hover{

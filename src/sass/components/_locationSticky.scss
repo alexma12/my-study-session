@@ -1,9 +1,10 @@
 .LocationSticky{
     background-image: linear-gradient(to bottom, $color-orange-sticky-light, $color-orange-sticky);
-    grid-row: 2/4;
-    height: 8rem;
+    grid-column: 1/2;
+    height: 8.3rem;
     width: 80%;
     border-radius: .2rem;
+    margin-top: 2.5rem;
     padding: 1rem;
 
     &__input{
@@ -32,10 +33,10 @@
         z-index: 4;
     }
 
-    &--icon{
+    &__icon{
         width: 2rem;
         height: 2rem;
-        margin-left: 1.4rem;
-        transform: translateY(-1rem);
+        margin-right: .6rem;
+        transform: translateY(0.1rem)
     }
 }

@@ -156,20 +156,16 @@
 }
 
 .Information {
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 2;
-  grid-column: 2/4;
+  grid-column: 2/-1;
   display: -ms-grid;
   display: grid;
   -webkit-transition: all 3s;
   transition: all 3s;
   justify-items: center;
   position: relative;
-  -ms-grid-rows: inherit;
-      grid-template-rows: inherit;
-  -ms-grid-columns: minmax(min-content, 42%) minmax(min-content, 58%);
-      grid-template-columns: minmax(-webkit-min-content, 42%) minmax(-webkit-min-content, 58%);
-      grid-template-columns: minmax(min-content, 42%) minmax(min-content, 58%);
+  -ms-grid-columns: minmax(min-content, 44%) minmax(min-content, 56%);
+      grid-template-columns: minmax(-webkit-min-content, 44%) minmax(-webkit-min-content, 56%);
+      grid-template-columns: minmax(min-content, 44%) minmax(min-content, 56%);
 }
 
 .Tasks {
@@ -210,6 +206,18 @@
 .Tasks__plusIcon-box {
   margin-top: 3rem;
   text-align: center;
+}
+
+.Tasks__plusIcon-button {
+  background-color: transparent;
+  height: 0rem;
+  border: none;
+  outline: none;
+}
+
+.Tasks__plusIcon-button:active {
+  -webkit-transform: translateY(0.2rem);
+          transform: translateY(0.2rem);
 }
 
 .Tasks__plusIcon:hover {
@@ -285,9 +293,9 @@
   line-height: 2.5rem;
   outline: none;
   height: 100%;
-  -ms-grid-columns: 8rem minmax(max-content, 60rem) minmax(max-content, 12rem);
-      grid-template-columns: 8rem minmax(-webkit-max-content, 60rem) minmax(-webkit-max-content, 12rem);
-      grid-template-columns: 8rem minmax(max-content, 60rem) minmax(max-content, 12rem);
+  -ms-grid-columns: 8rem minmax(min-content, 60rem) minmax(min-content, 12rem);
+      grid-template-columns: 8rem minmax(-webkit-min-content, 60rem) minmax(-webkit-min-content, 12rem);
+      grid-template-columns: 8rem minmax(min-content, 60rem) minmax(min-content, 12rem);
   -ms-grid-rows: (2.5rem)[auto-fill];
       grid-template-rows: repeat(auto-fill, 2.5rem);
 }
@@ -517,12 +525,13 @@
 .LocationSticky {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#f7bf71), to(#f5a93e));
   background-image: linear-gradient(to bottom, #f7bf71, #f5a93e);
-  -ms-grid-row: 2;
-  -ms-grid-row-span: 2;
-  grid-row: 2/4;
-  height: 8rem;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+  height: 8.3rem;
   width: 80%;
   border-radius: .2rem;
+  margin-top: 2.5rem;
   padding: 1rem;
 }
 
@@ -552,26 +561,44 @@
   z-index: 4;
 }
 
-.LocationSticky--icon {
+.LocationSticky__icon {
   width: 2rem;
   height: 2rem;
-  margin-left: 1.4rem;
-  -webkit-transform: translateY(-1rem);
-          transform: translateY(-1rem);
+  margin-right: .6rem;
+  -webkit-transform: translateY(0.1rem);
+          transform: translateY(0.1rem);
 }
 
 .StudyPartnersSticky {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#93e682), to(#86d477));
   background-image: linear-gradient(to bottom, #93e682, #86d477);
-  -ms-grid-row: 2;
-  -ms-grid-row-span: 2;
-  grid-row: 2/4;
-  min-height: 8rem;
-  width: 80%;
+  min-height: 8.3rem;
+  grid-column: 2/-1;
+  width: 93%;
+  -ms-grid-column-align: start;
+      justify-self: start;
+  margin-top: 2.6rem;
   border-radius: .2rem;
   padding: 1rem;
   -webkit-transition: all 3s;
   transition: all 3s;
+}
+
+.StudyPartnersSticky__input {
+  background-color: #b7f5a8;
+  border: none;
+  outline: none;
+  border-radius: .2rem;
+  display: inline-block;
+  width: 37%;
+  height: 2.5rem;
+  margin-left: 2rem;
+  -webkit-transform: translateY(-0.3rem);
+          transform: translateY(-0.3rem);
+  padding-left: .7rem;
+  padding-top: .2rem;
+  font-size: 1.6rem;
+  font-family: inherit;
 }
 
 .StudyPartnersSticky::before {
@@ -580,17 +607,44 @@
   position: absolute;
   width: 7rem;
   top: 12%;
-  left: 66%;
+  left: 65%;
   height: 2.3rem;
   background-color: #2725251a;
   z-index: 4;
 }
 
-.StudyPartnersSticky--icon {
+.StudyPartnersSticky__icon {
   width: 2rem;
   height: 2rem;
-  margin-left: 1.4rem;
-  -webkit-transform: translateY(-1rem);
-          transform: translateY(-1rem);
+  margin-right: .7rem;
+  -webkit-transform: translateY(0.2rem);
+          transform: translateY(0.2rem);
+}
+
+.StudyPartnersSticky__icon--plus {
+  margin-left: 1rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  -webkit-transform: rotate(-45deg) translateY(0.2rem);
+          transform: rotate(-45deg) translateY(0.2rem);
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+.StudyPartnersSticky__icon--plus:hover {
+  -webkit-transform: rotate(-45deg) translateY(0.2rem) scale(1.12);
+          transform: rotate(-45deg) translateY(0.2rem) scale(1.12);
+}
+
+.StudyPartnersSticky__icon--button {
+  background-color: transparent;
+  height: 0rem;
+  border: none;
+  outline: none;
+}
+
+.StudyPartnersSticky__icon--button:active {
+  -webkit-transform: translateY(0.1rem);
+          transform: translateY(0.1rem);
 }
 /*# sourceMappingURL=main.css.map */

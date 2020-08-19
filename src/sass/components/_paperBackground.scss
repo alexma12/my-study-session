@@ -25,7 +25,7 @@
         line-height: 2.5rem;
         outline: none;
         height: 100%;
-        grid-template-columns: 8rem minmax(max-content,60rem) minmax(max-content, 12rem);
+        grid-template-columns: 8rem minmax(min-content, 60rem) minmax(min-content, 12rem);
         grid-template-rows: repeat(auto-fill, 2.5rem);
     }
 
