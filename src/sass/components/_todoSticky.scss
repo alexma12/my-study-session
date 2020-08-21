@@ -1,0 +1,173 @@
+.TodoSticky{
+    background-color: $color-yellow-sticky-light;
+    width: 30rem;
+    border-radius: .2rem;
+    padding: 1.5rem;
+    margin-top: 3.5rem;
+    box-shadow: 1rem 1rem 1rem rgba(black, .1);
+    transform: skewY(-1deg) skewX(-1deg);
+
+
+    &--yellow{
+        background-color: $color-yellow-sticky-light;
+        transition: background-color .8s;
+    }
+
+    &--blue{
+        background-color: $color-task-blue-sticky;
+        transition: background-color .8s;
+    }
+
+    &--green{
+        background-color: $color-task-green-sticky;
+        transition: background-color .8s;
+    }
+
+    &--red{
+        background-color: $color-task-red-sticky;   
+         transition: background-color .8s;
+    }
+    
+    
+
+    &::before{
+        content: "";
+        display: block;
+        position: relative;
+        width: 9rem;
+        top: 0rem;
+        left: -3.9rem;
+        height: 2.3rem;
+        background-color: $color-tape;
+        z-index: 4;
+        transform: rotate(-45deg);
+        transition: all 10s;
+
+    }
+
+    &::after{
+        content: "";
+        display: block;
+        position: relative;
+        top: .5rem;
+        left: 80%;
+        width: 9rem;
+        height: 2.3rem; 
+        background-color: $color-tape;
+        z-index: 4;
+        transform: rotate(-45deg);
+    }
+    &__textarea{
+        font-family: inherit;
+        font-size: 1.8rem;
+        max-width: 27.7rem;
+        min-height: 4.8rem;
+        outline: none;
+        border: none;
+        letter-spacing: .1rem;
+        line-height: 2.6rem;
+        background-color: transparent;
+        transform: translateY(-3rem) translateX(-.9rem) skewY(1deg) skewX(1deg);;
+        padding: 1.5rem 1rem;
+        resize: none;
+        text-transform: uppercase;
+        overflow-wrap: break-word;
+        font-weight: 900;
+
+        &:focus{
+            border: .1rem dotted rgba(grey, .4);
+            resize: both;
+        }
+
+        &::placeholder{
+            text-transform: none;
+            color: black;
+        }
+    }
+
+    &__delete{
+        display:block;
+        transform: translateY(3.8rem) translateX(-1.48rem);
+        width: 111.5%;
+        height: 2.5rem;
+        letter-spacing: .13rem;
+        padding-top: .4rem;
+        color: black;
+        font-family: inherit;
+        background-color: rgba(lightgray,.2);
+        border: none;
+        opacity: 0;
+        transition: all .4s;
+        outline: none;
+
+        &:hover{
+            background-color: rgba(lightgray,.3);
+        }
+
+        &:active{
+            background-color: rgba(lightgray,.6);
+        }
+    }
+
+    &:hover &__delete{
+        opacity: 1
+    }
+
+    &__time{
+        letter-spacing: .1rem;
+        transform: translateY(-3rem) skewY(1deg) skewX(1deg);
+        font-size: 1.5rem;
+        color: red;
+        
+         &--input{
+             outline: none;
+             background-color: transparent;
+             border: none;
+             border-bottom: .11rem solid red;
+             font-size: inherit;
+             font-family: inherit;
+             width: 3.5rem;
+             color: blue;
+             padding-left: .4rem;
+
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+            margin-left: 1rem;
+         }
+
+    }
+
+    &__urgency{
+        display: flex;
+        justify-content: space-evenly;
+        transform: skewY(1deg) skewX(1deg) translateY(1rem);
+        letter-spacing: .1rem;
+        font-size: 1.5rem;
+        color: blue;
+        position: relative;
+
+        &--checkbox{
+            margin-left: 1rem;
+            width: 1.2rem;
+            height: 1.2rem;
+            display: inline-block;
+            border-radius: 50%;
+            border: .1rem solid rgba(black,.9);
+            transition: all .5s;
+
+            &-unchecked{
+                background-color:transparent;
+            }
+
+            &-checked{
+                background-color: rgba(blue,.7);
+            }
+    
+            }
+      }
+}
+
+

@@ -17,7 +17,7 @@ const Auth = () => {
     return (
         <div className = "Auth">
             <PaperBackground>
-                <CSSTransition in = {startAnim} classNames = "fadeDown" mountOnEnter>
+                <CSSTransition in = {startAnim} classNames = "fadeDown" mountOnEnter timeout ={0}>
                 <div className = "heading-1 u-grid-column-2-3 u-justify-self-center u-margin-top-small">Study Session</div>
                 </CSSTransition>  
                 <AuthSticky startAnimation = {startAnim}/>

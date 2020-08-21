@@ -84,7 +84,7 @@ const AuthSticky = (props) => {
     })
 
     return (
-        <CSSTransition in = {props.startAnimation} mountOnEnter>
+        <CSSTransition in = {props.startAnimation} mountOnEnter timeout ={0}>
         <div className="AuthSticky">
             <div className="heading-2 u-justify-self-center u-margin-top-sm ">
                 <div className="AuthSticky__text-box">

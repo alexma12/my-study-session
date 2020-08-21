@@ -5,10 +5,14 @@
     width: 93%;
     justify-self: start;
     margin-top: 2.6rem;
-    border-radius: .2rem;
     padding: 1rem;
     transition: all 3s;
+    box-shadow: 1rem 1rem 1rem rgba(black, .1);
+    transform: skewX(.6deg) skewY(-.3deg);
 
+    & > * {
+        transform: skewX(-.6deg) skewY(.3deg);
+    }
     &__input{
         background-color: #b7f5a8;
         border: none;
@@ -18,7 +22,7 @@
         width: 37%;
         height: 2.5rem;
         margin-left: 2rem;
-        transform: translateY(-.3rem);
+        transform: translateY(-.3rem) skewX(-.6deg) skewY(.3deg);
         padding-left: .7rem;
         padding-top: .2rem;
         font-size: 1.6rem;
@@ -30,27 +34,28 @@
         display: block;
         position: absolute;
         width: 7rem;
-        top: 12%;
-        left: 65%;
+        top: -16%;
+        left: 42%;
         height: 2.3rem;
         background-color: $color-tape;
         z-index: 4;
     }
+    
     &__icon{
         width: 2rem;
         height: 2rem;
         margin-right: .7rem;
-        transform: translateY(.2rem);
+        transform: translateY(.2rem) skewX(-.6deg) skewY(.3deg);
 
         &--plus{
             margin-left: 1rem;
             height: 1.5rem;
             width: 1.5rem;
-            transform: rotate(-45deg) translateY(.2rem);
+            transform: rotate(-45deg) translateY(.2rem) skewX(-.6deg) skewY(.3deg);
             transition: all .3s;
 
             &:hover{
-                transform: rotate(-45deg) translateY(.2rem) scale(1.12);
+                transform: rotate(-45deg) translateY(.2rem) scale(1.12) skewX(-.6deg) skewY(.3deg);
             }
             
         }
@@ -62,10 +67,60 @@
             outline: none;
             
             &:active{
-                transform: translateY(.1rem);
+                transform: translateY(.1rem) skewX(-.6deg) skewY(.3deg);
             }
         }
     }
 
+    &__form {
+        display: inline;
+    }
+
+    &__none {
+        display:block;
+        text-align: center;
+        background-color: #b7f5a8;
+        border-radius: .2rem;
+        padding: .4rem;
+        margin-top: .4rem;
+        padding-top: .8rem;
+        text-transform: uppercase;
+        animation: fadeIn .8s ease-in;
+        letter-spacing: .2rem;
+    }
 
 }
+
+.StudyPartnerName{
+    text-align: center;
+    font-size: 1.4rem;
+    padding: .2rem .8rem;
+    margin: .4rem;
+    padding-top: .4rem;
+    border-radius: .2rem;
+    background-color: #b7f5a8;
+    border: .1rem solid rgba(#145f1f, .6);
+    display: inline-block;
+    animation: fadeIn .4s ease-in;
+    transform: skewX(-.6deg) skewY(.3deg);
+
+    &__icon{
+        height: 1rem;
+        width: 1rem;
+        margin-left: 1rem;
+        opacity: 0;
+        transition: all .2s;
+    }
+
+    &:hover &__icon{
+       opacity: 1; 
+    } 
+
+    &--box{
+        margin-top: .2rem;
+        padding: .4rem .3rem;
+        padding-bottom: 0;
+    }
+
+}
+

@@ -4,16 +4,31 @@ import './css/main.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from "react-router-dom";
-import {Provider,} from "react-redux";
+import {Provider} from "react-redux";
+import {createStore, combineReducers, applyMiddleware, compose} from "redux";
+
+import uiReducer from "./store/reducers/userInput";
+import studyPartnersReducer from "./store/reducers/studyPartners";
+import tasksReducer from "./store/reducers/tasks";
+
 import "./index.css";
 
-const store = {};
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const rootReducer = combineReducers({
+    ui: uiReducer,
+    studyPartners: studyPartnersReducer,
+    tasks: tasksReducer
+})
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware()));
 
 ReactDOM.render(
   <div>
+    <Provider store = {store}>
     <BrowserRouter>
     <App />
     </BrowserRouter>
+    </Provider>
   </div>,
   document.getElementById('root')
 );

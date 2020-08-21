@@ -3,9 +3,14 @@
     grid-column: 1/2;
     height: 8.3rem;
     width: 80%;
-    border-radius: .2rem;
-    margin-top: 2.5rem;
+    margin-top: 3.5rem;
     padding: 1rem;
+    box-shadow: 1rem 1rem 1rem rgba(black, .1);
+    transform: skewY(-.4deg) skewX(-.4deg);
+    
+    & > * {
+        transform: skewY(.4deg) skewX(.4deg);
+    }
 
     &__input{
         background-color: #f3ca71;
@@ -26,8 +31,8 @@
         display: block;
         position: absolute;
         width: 7rem;
-        top: 12%;
-        left: 16%;
+        top: -18%;
+        left: 35%;
         height: 2.3rem;
         background-color: $color-tape;
         z-index: 4;
@@ -37,6 +42,6 @@
         width: 2rem;
         height: 2rem;
         margin-right: .6rem;
-        transform: translateY(0.1rem)
+        transform: translateY(0.1rem) skewY(.4deg) skewX(.4deg);
     }
 }
