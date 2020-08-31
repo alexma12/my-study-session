@@ -15,5 +15,10 @@ export const removeStudyPartner = (id) => {
     }
 }
 
-
+export const setStateStudyPartners = (studyPartners) => {
+    return {
+        type: actionTypes.SET_STATE_STUDY_PARTNERS,
+        studyPartners: studyPartners
+    }
+}
 

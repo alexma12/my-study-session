@@ -1,7 +1,7 @@
 .LocationSticky{
     background-image: linear-gradient(to bottom, $color-orange-sticky-light, $color-orange-sticky);
     grid-column: 1/2;
-    height: 8.3rem;
+    height: fit-content;
     width: 80%;
     margin-top: 3.5rem;
     padding: 1rem;
@@ -19,7 +19,11 @@
         padding-top: 1rem;
         border: none;
         border-radius: .2rem;
-        width: 100%;
+        margin-top: .4rem;
+        margin-left: 3%;
+        max-width: 94%;
+        min-width: 94%;
+        max-height: 8rem;
         height: 50%;
         outline: none;
         font-size: inherit;
@@ -31,8 +35,8 @@
         display: block;
         position: absolute;
         width: 7rem;
-        top: -18%;
-        left: 35%;
+        top: -1.4rem;
+        left: 9rem;
         height: 2.3rem;
         background-color: $color-tape;
         z-index: 4;

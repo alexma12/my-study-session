@@ -5,14 +5,30 @@
     outline: none;
     border: none;
     color: black;
-    width: 60%;
+    width: 52%;
     height: 3.5rem;
     border-radius: .2rem;
     font-family: inherit;
     padding-top: .3rem;
-    margin-top: 2.5rem;
+    margin-top: 3rem;
     box-shadow: 0 1rem .5em rgba(black, .1);
     transition: .2s all;
+
+
+    &--disabled{
+        z-index: 4;
+        font-size: 1.5rem;
+        background-color: rgb(235, 232, 232);
+        outline: none;
+        border: none;
+        color: grey;
+        width: 52%;
+        height: 3.5rem;
+        border-radius: .2rem;
+        font-family: inherit;
+        padding-top: .3rem;
+        margin-top: 3rem;
+    }
 
     &__box{
         display: grid;

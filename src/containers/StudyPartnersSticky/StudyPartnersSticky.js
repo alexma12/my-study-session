@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { CSSTransition, TransitionGroup } from "react-transition-group"
 
 import StudyPartnerName from "./StudyPartnerName";
 import { ReactComponent as UserIcon } from "../../imgs/svg/avatar.svg";
@@ -28,7 +27,7 @@ const StudyPartnerSticky = (props) => {
     if(props.studyPartners && props.studyPartners.length > 0){
         studypartners = props.studyPartners.map((studyPartner => {
             return (
-                <StudyPartnerName name = {studyPartner.name} clicked = {() => props.onRemoveStudyPartner(studyPartner.id)} />
+                <StudyPartnerName key = {studyPartner.id} name = {studyPartner.name} clicked = {() => props.onRemoveStudyPartner(studyPartner.id)} />
             )
         }))
     }

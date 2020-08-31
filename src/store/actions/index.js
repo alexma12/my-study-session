@@ -12,5 +12,34 @@ export {
     addTask,
     removeTask,
     updateUrgency,
-    updateInput
+    updateInput,
+    saveSession,
+    setFinished,
+    updateTimeSpent,
 } from "./tasks"
+
+export {
+    setFlashMessage,
+    removeFlashMessage
+} from "./homeFlashMessages"
+
+export {
+    setAuthFlashMessage,
+    removeAuthFlashMessage
+} from "./authFlashMessages"
+
+export {
+    initStudyState,
+    refreshStudyState
+} from "./studyState"
+
+export {
+    startSession,
+    finishedSession
+} from "./session"
+
+export {
+    auth,
+    authCheckState,
+    logout
+} from "./auth"

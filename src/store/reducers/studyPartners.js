@@ -13,8 +13,11 @@ const reducer = (state = initialState, action) => {
                     name: action.name,
                     id: action.id
                 }
-
+                if(state.studyPartners !== undefined) {
                 newState.studyPartners = [...state.studyPartners, newPartner];
+                } else { 
+                    newState.studyPartners = [newPartner];
+                }
                 return (newState);
             }
 
@@ -24,6 +27,14 @@ const reducer = (state = initialState, action) => {
                 newState.studyPartners =
                     state.studyPartners.filter((studyPartner) => studyPartner.id !== action.id);
                 return (newState);
+            }
+        
+        case actionTypes.SET_STATE_STUDY_PARTNERS: 
+            {
+                const newState = { ...state };
+                newState.studyPartners = action.studyPartners;
+                return(newState);
+
             }
         
 

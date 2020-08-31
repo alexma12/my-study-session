@@ -8,6 +8,7 @@
 
 @import "./pages/auth";
 @import "./pages/home";
+@import "./pages/session";
 
 @import "./components/paperBackground";
 @import "./components/authSticky";
@@ -17,3 +18,9 @@
 @import "./components/studyPartnersSticky";
 @import "./components/todoSticky";
 @import "./components/highlightButton";
+@import "./components/flashMessage";
+@import "./components/startSessionModal";
+@import "./components/sessionTask";
+@import "./components/spinner";
+@import "./components/endSessionModal";
+@import "./components/endSessionTask";

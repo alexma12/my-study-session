@@ -11,13 +11,14 @@ const LocationSticky = (props) => {
             <div>
                 <LocationIcon className="LocationSticky__icon" />
         Location:
-        <input  type="text" 
-                onChange={(event) => props.onInputChanged(event.target.value)} 
-                value={props.inputValue} 
-                className="LocationSticky__input" 
-                placeholder="Enter Study Location"
-        />
-        </div>
+        <textarea
+                    onChange={(event) => props.onInputChanged(event.target.value)}
+                    value={props.inputValue}
+                    className="LocationSticky__input"
+                    placeholder="Enter Study Location"
+                    rows = "2"
+                />
+            </div>
         </div>);
 }
 const mapStateToProps = state => {

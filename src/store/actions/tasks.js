@@ -1,4 +1,10 @@
-import * as actionTypes from "./actionTypes"
+import * as actionTypes from "./actionTypes";
+import axios from "../../axios/axios";
+import { setFlashMessage, removeFlashMessage } from "./homeFlashMessages";
+
+
+const Month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
 
 export const addTask = () => {
     return {
@@ -21,6 +27,7 @@ export const updateUrgency = (id, value) => {
     }
 }
 
+
 export const updateInput = (id, newValue, value) => {
     return {
         type: actionTypes.TASK_UPDATE_INPUT,
@@ -29,38 +36,83 @@ export const updateInput = (id, newValue, value) => {
         value: value
     }
 }
-/*
+
+export const setStateTasks = (tasks) => {
+    return {
+        type: actionTypes.SET_STATE_TASKS,
+        tasks: tasks
+    }
+}
+
+export const updateTimeSpent = (id, value, config) => {
+    return {
+        type: actionTypes.TASK_UPDATE_TIME_SPENT,
+        id: id,
+        value: value,
+        config: config
+    }
+}
 
 
-    const onUrgencyChanged = (id, value) => {
-        const newTaskInputs = [...taskInputs]
-        for (let i = 0; i < newTaskInputs.length; i++) {
-            if (newTaskInputs[i].id === id) {
-                newTaskInputs[i][value] = !newTaskInputs[i][value];
+export const saveSession = (tasks, studyPartners, location, started, time, userId) => {
+    return dispatch => {
+        const session = {
+            tasks: tasks,
+            studyPartners: studyPartners,
+            location: location,
+            sessionStartTime: time,
+            sessionStarted: started
+        }
+        axios.put(`/${userId}/todaysSession.json`, session)
+            .then(() => {
+                let d = new Date();
+                let hr = d.getHours();
+                let min = d.getMinutes();
+                let sec = d.getSeconds();
+                if (min < 10) {
+                    min = "0" + min;
+                }
+                if (sec < 10) {
+                    sec = "0" + sec;
+                }
+                let ampm = "am";
+                if (hr > 12) {
+                    hr -= 12;
+                    ampm = "pm";
+                }
+                if (hr === 0) {
+                    hr = 12;
+                }
+                let date = d.getDate();
+                let month = Month[d.getMonth()];
+              
+                let string = `${month} ${date}, ${hr}:${min}:${sec} ${ampm}: `;
+
+                dispatch(removeFlashMessage())
+                dispatch(setFlashMessage(false, string, "Successfully Saved Session"));
+            })
+            .catch(error => {
+                dispatch(setFlashMessage(true, error.message));
+            })
+    }
+}
+
+export const setFinished = (id, tasks) => {
+    return dispatch => {
+        let updatedTasks = [...tasks];
+        for(let i = 0; i < updatedTasks.length; i++){
+            if(updatedTasks[i].id === id){
+                updatedTasks[i].finished =  !updatedTasks[i].finished;
             }
         }
-        setTaskInputs(newTaskInputs);
-    }
-
-    const onTaskInputChanged = (id, newValue, value) => {
-        if (value !== "value" && (newValue.length > 2 || +newValue < 0 || (value === "min" && +newValue > 59))) {
-            return
-        }
-        const newTaskInputs = [...taskInputs]
-        for (let i = 0; i < newTaskInputs.length; i++) {
-            if (newTaskInputs[i].id === id) {
-                newTaskInputs[i][value] = newValue;
-            }
-        }
-        setTaskInputs(newTaskInputs);
-    }
-
-
-    const onDeleteTaskHandler = (id) => {
-        const newTaskInputs = taskInputs.filter(task => {
-            return (task.id !== id)
+        axios.put("/todaysSession/tasks.json", updatedTasks)
+        .then(() =>
+        {
+            dispatch(setStateTasks(updatedTasks))
         })
-
-        setTaskInputs(newTaskInputs);
+        .catch((error) => {
+            console.log(error);
+        })
     }
-*/
+}
+

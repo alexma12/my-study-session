@@ -11,7 +11,7 @@ const highlightButton = (props) => {
     }
 
     return(
-    <button className = {highlightButtonClasses}>
+    <button style = {props.style} onClick = {props.clicked} className = {highlightButtonClasses}>
         {props.children}
     </button>
     )

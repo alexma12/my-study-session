@@ -3,7 +3,7 @@ import * as actionTypes from "../actions/actionTypes"
 const initialState = {
     studyPartnersValue: "",
     locationValue: "",
-    
+    allowSaveSession: false
 }
 
 
@@ -25,6 +25,7 @@ const reducer = (state = initialState, action) => {
                 newState.locationValue = newValue;
                 return (newState);
             }
+
         default: return state
     }
 

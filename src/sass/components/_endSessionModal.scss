@@ -1,0 +1,171 @@
+.EndSessionModal{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-bottom: 5rem;
+    width: 100%;
+    background-color: rgba(black, .9);
+    z-index: 8;
+
+    &__content{
+        margin: 0 auto;
+        margin-top: 5%;
+        position: relative;
+        padding: 2.5rem;
+        text-align: center;
+        letter-spacing: .4rem;
+        font-size: 3rem;
+        text-transform: uppercase;
+        font-family: "Patrick Hand", "cursive";
+        width: 92%;
+        overflow-y: scroll;
+        background-color: white;
+        border: 2rem solid rgb(27, 59, 117);
+        z-index: 9;
+
+    }
+
+    &__time{
+        margin-left: .5rem;
+        color:rgb(97, 143, 230);
+    }
+
+    &__info{
+        margin-top: 3rem;
+        font-size: 2.4rem;
+        display: grid;
+        grid-template-columns: 40% 60%;
+        justify-items: center;
+        align-items: start;
+
+        &--location{
+            display: grid;
+            justify-items: center;
+
+            &-label{
+                margin-left: 2rem;
+                color: black;
+                padding-left: .3rem;
+                padding-bottom: .2rem;
+                border-bottom: .2rem solid black;
+            }
+
+            &-content{
+                padding-left: 2rem;
+                margin-top: 1rem;
+                color: rgb(255, 189, 66);
+            }
+        }
+
+        &--studyPartners{
+            &-label{
+                margin: 0 auto;
+                color: black;
+                padding-left: .3rem;
+                padding-bottom: .2rem;
+                width: 22rem;
+                border-bottom: .2rem solid black;
+            }
+
+            &-content{
+                display: inline-block;
+                margin: 1rem;
+                margin-bottom: 0;
+                font-size: 2rem;
+                color: rgb(74, 179, 74);
+
+            }
+        }
+    }
+
+    &__tasks{
+        margin-top: 1rem;
+        display: grid;
+        justify-items: center;
+        &-label{
+            margin-bottom: 1rem;
+            grid-column: 1/-1;
+            margin-left: 2rem;
+            color: black;
+            padding-left: .3rem;
+            padding-bottom: .2rem;
+            border-bottom: .2rem solid black;
+        }
+        
+    }
+
+    &__exit{
+        font-size: 1.5rem;
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        background-color: rgb(245, 244, 244);
+        padding: .3rem 1rem;
+        padding-right: .6rem;
+        
+        &:hover{
+            background-color: rgb(228, 228, 228);
+        }
+
+        &:active{
+            background-color: rgb(204, 204, 204);
+        }
+    }
+
+
+    &__end{
+        margin-top: 3rem;
+        &-time{
+            color: rgb(180, 97, 180);
+        }
+    }
+
+    &__finish{
+        margin: 0 auto;
+        margin-top: 4rem;
+        font-size: 3.5rem;
+        position: relative;
+        width: 50%;
+        color: black;
+        padding-bottom: .5rem;
+        color: rgb(27, 59, 117);
+        border-left: .25rem solid rgb(27, 59, 117);
+        border-right: .25rem solid rgb(27, 59, 117);
+        transition: all .2s;
+
+        &--disabled{
+            &:before{
+                content: "";
+                position: absolute;
+                width: 74%;
+                height: .4rem;
+                top: 2.32rem;
+                left: 4.5rem;
+                background-color: rgba(255, 0, 0, 0.7);
+                transform: rotate(7deg);
+            }
+    
+            &:after{
+                content: "";
+                position: absolute;
+                width: 74%;
+                height: .4rem;
+                top: 2.32rem;
+                left: 4.5rem;
+                background-color: rgba(255, 0, 0, 0.7);
+                transform: rotate(-7deg);
+            }
+        }
+
+        &--active{
+            &:hover{
+                transform: translateY(-.5rem);
+            }
+
+            &:active{
+                transform: translateY(0);
+            }
+        }
+    }
+
+}

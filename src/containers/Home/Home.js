@@ -1,74 +1,93 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { CSSTransition } from "react-transition-group";
+
 import FlipMove from 'react-flip-move';
 
+import FlashMessage from "../FlashMessage/FlashMessage"
 import PaperBackground from "../backgrounds/PaperBackground/PaperBackground";
 import LocationSticky from "../LocationSticky/LocationSticky";
 import StudyPartnersSticky from "../StudyPartnersSticky/StudyPartnersSticky";
 import TodoSticky from "../TodoSticky/TodoSticky";
-import HighlightButton from "../HighlightButton/HighlightButton.js"
+import HighlightButton from "../HighlightButton/HighlightButton.js";
+import StartSessionModal from "../Modal/StartSessionModal";
+
+import { ReactComponent as ClockIcon } from "../../imgs/svg/clock.svg"
 import { ReactComponent as TaskLiskIcon } from "../../imgs/svg/task-list.svg";
 import { ReactComponent as PlusIcon } from "../../imgs/svg/cross.svg";
 
 import * as actions from "../../store/actions"
 
-const Month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Octr", "Nov", "Dec"];
+
+
+const Month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const Day = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 const Home = (props) => {
 
-  //  const [taskInputs, setTaskInputs] = useState([]);
     const [startAnim, setStartAnim] = useState(false);
+    const [allowStartSession, setAllowStartSession] = useState(false);
+    const [displayModal, setDisplayModal] = useState(false);
+    const [sessionLoading, setSessionLoading] = useState(false);
+
 
     useEffect(() => {
+
         setTimeout(() => {
             setStartAnim(true);
-        }, 1200)
+            props.initStudyState(props.userId);
+        }, 1500)
+        return (() => props.onCloseFlashMessage())
+        //if(props.messageError) passing in prop
     }, []);
 
+    // Modal //
 
-    // Task Fucntions //
-/*
-    const onAddTaskHandler = () => {
-        const id = `${Math.random()}_${new Date().getTime()}`
-        const newTask = { id: id, value: "", hr: "", min: "", urgent: false, important: false };
-        setTaskInputs([...taskInputs, newTask]);
+    const modalStartSessionHandler = () => {
+
+        props.onStartSession(props.tasks, props.studyPartners, props.location, false, props.sessionStartTime, props.userId);
+        setSessionLoading(true);
+        setTimeout(() => {
+            setSessionLoading(false);
+            props.history.replace("/session");
+        }, 1000)
+
     }
 
-    const onUrgencyChanged = (id, value) => {
-        const newTaskInputs = [...taskInputs]
-        for (let i = 0; i < newTaskInputs.length; i++) {
-            if (newTaskInputs[i].id === id) {
-                newTaskInputs[i][value] = !newTaskInputs[i][value];
-            }
+    const exitModalHandler = () => {
+        setDisplayModal(false);
+    }
+
+    const updateSessionTimeHandler = () => {
+        props.onStartSession(props.tasks, props.studyPartners, props.location, true, "", props.userId);
+        setSessionLoading(true);
+        setTimeout(() => {
+            setSessionLoading(false);
+            props.history.replace("/session");
+        }, 1000)
+    }
+
+    const logoutHandler = () => {
+        props.refreshStudyState()
+        props.onLogout()
+    }
+
+    // Session Start //
+
+    const startSessionHandler = () => {
+        if (props.sessionStarted) {
+            setDisplayModal(true);
+        } else {
+            props.onStartSession(props.tasks, props.studyPartners, props.location, true, "", props.userId);
+            setTimeout(() => {
+                props.history.replace("/session");
+            }, 500)
+
         }
-        setTaskInputs(newTaskInputs);
     }
 
-    const onTaskInputChanged = (id, newValue, value) => {
-        if (value !== "value" && (newValue.length > 2 || +newValue < 0 || (value === "min" && +newValue > 59))) {
-            return
-        }
-        const newTaskInputs = [...taskInputs]
-        for (let i = 0; i < newTaskInputs.length; i++) {
-            if (newTaskInputs[i].id === id) {
-                newTaskInputs[i][value] = newValue;
-            }
-        }
-        setTaskInputs(newTaskInputs);
-    }
+    // Task Functions //
 
-
-    const onDeleteTaskHandler = (id) => {
-        const newTaskInputs = taskInputs.filter(task => {
-            return (task.id !== id)
-        })
-
-        setTaskInputs(newTaskInputs);
-    }
-*/
-    console.log(props.tasks + "qw");
     let tasks = <div className="Tasks__NoneSticky"> No Tasks </div>;
     if (props.tasks && props.tasks.length > 0) {
         tasks =
@@ -87,17 +106,30 @@ const Home = (props) => {
                         onDelete={props.onRemoveTaskHandler} />
                 )
             });
-
     }
+
+    if (props.tasks) {
+        let validArray = props.tasks.filter((task) => {
+            return (task.value.trim() !== "" && task.min !== "" && task.hr !== "")
+        });
+        if (allowStartSession !== true && props.tasks.length > 0 && validArray.length === props.tasks.length) {
+            setAllowStartSession(true);
+        }
+        if (allowStartSession === true && (props.tasks.length === 0 || validArray.length !== props.tasks.length)) {
+            setAllowStartSession(false);
+        }
+    }
+
+    // Time Functions //
 
     let totalTimeInMins = 0;
 
-    if(props.tasks){
-    for(let task of props.tasks){
-        totalTimeInMins = totalTimeInMins + (+task.hr || 0) * 60;
-        totalTimeInMins = totalTimeInMins + (+task.min || 0);
+    if (props.tasks) {
+        for (let task of props.tasks) {
+            totalTimeInMins = totalTimeInMins + (+task.hr || 0) * 60;
+            totalTimeInMins = totalTimeInMins + (+task.min || 0);
+        }
     }
-}
 
     const totalHours = Math.floor(totalTimeInMins / 60);
     const totalMins = totalTimeInMins - (totalHours * 60);
@@ -105,15 +137,40 @@ const Home = (props) => {
     const date = new Date()
     const dateString = `${Day[date.getDay()]}, ${Month[date.getMonth()]} ${date.getDate()} `;
 
+    // Flash Message // 
+
     return (
         <div className="Home" >
+            <CSSTransition in={displayModal} classNames="fade" mountOnEnter unmountOnExit timeout={1000}>
+                <StartSessionModal key="startModal"
+                    loading={sessionLoading}
+                    onExit={exitModalHandler}
+                    noUpdate={modalStartSessionHandler}
+                    withUpdate={updateSessionTimeHandler}
+                    time={props.sessionStartTime}
+                />
+            </CSSTransition>
+            <CSSTransition in={props.showMessage} classNames="fade" mountOnEnter timeout={1000}>
+                <FlashMessage key="flashMessage"
+                    clicked={props.onCloseFlashMessage}
+                    isError={props.isError}
+                    message={props.flashMessage}
+                    subMessage={props.subMessage} />
+            </CSSTransition>
             <PaperBackground>
+                <CSSTransition in={startAnim} classNames="fade" mountOnEnter timeout={1000}>
+                    <div>
+                    <button className = "MySessions" onClick={logoutHandler}> MY SESSIONS </button>
+                    <button className = "Logout" onClick={logoutHandler}> LOGOUT </button>
+                    </div>
+                </CSSTransition>
                 <CSSTransition in={startAnim} classNames="fadeDown" mountOnEnter timeout={0}>
                     <div key="heading" className="heading-1 u-grid-column-2-3 u-justify-self-center u-margin-top-small">Study Session</div>
                 </CSSTransition>
-                <CSSTransition in={startAnim} classNames="fadeLeft" mountOnEnter timeout={0} >
-                    <div className="Date" key="date">
-                        {dateString}
+                <CSSTransition in={startAnim} classNames="fade" mountOnEnter timeout={0} >
+                    <div className="NameAndDate">
+                        <div className="Name"> {props.userName} </div>
+                        <div className="Date">{dateString} </div>
                     </div>
                 </CSSTransition>
                 <CSSTransition in={startAnim} classNames="fade" mountOnEnter timeout={0}>
@@ -126,14 +183,16 @@ const Home = (props) => {
                     <section key="tasks" className="Tasks">
                         <h2 className="Tasks__heading">
                             <div>
-                            <span className = "Tasks__heading--text">
-                                TODAY'S SESSION
+                                <span className="Tasks__heading--text">
+                                    Today's Session
                             </span>
-                            <TaskLiskIcon className="Tasks__icon" />
+                                <TaskLiskIcon className="Tasks__icon--right" />
                             </div>
-                            <div className = "Tasks__heading--text-time">
-                                <span className = "u-margin-right-sm"> Total Time:  </span>       
-                                {totalHours} {(totalHours === 1)? "hr" : "hrs"} {totalMins} {(totalMins === 1)? "min" : "mins"}
+                            <ClockIcon className="Tasks__icon--left" />
+                            <div className="Tasks__heading--text-time">
+
+                                <span className="u-margin-right-sm"> Total Time:  </span>
+                                {totalHours} {(totalHours === 1) ? "hr" : "hrs"} {totalMins} {(totalMins === 1) ? "min" : "mins"}
                             </div>
                         </h2>
                         <div className="Tasks__content">
@@ -152,8 +211,9 @@ const Home = (props) => {
                             </div>
                         </div>
                         <div className="Tasks__buttons">
-                            <HighlightButton enabled = {false}> Save Session </HighlightButton>
-                            <HighlightButton enabled = {props.tasks && props.tasks.length > 0}> Start Session </HighlightButton>
+                            <HighlightButton clicked={() => props.onSaveSession(props.tasks, props.studyPartners, props.location, props.sessionStarted, props.sessionStartTime, props.userId)} enabled={true}> Save Session </HighlightButton>
+                            <HighlightButton clicked={allowStartSession && props.location.length > 0 ? startSessionHandler : () => props.onSetFlashMessage(true, "Make Sure All Inputs are Filled", "")}
+                                enabled={allowStartSession && props.location.length > 0}> Start Session </HighlightButton>
                         </div>
                     </section>
                 </CSSTransition>
@@ -163,18 +223,36 @@ const Home = (props) => {
 }
 
 const mapStateToProps = state => {
-    return{
-        tasks: state.tasks.tasks
+    return {
+        tasks: state.tasks.tasks,
+        studyPartners: state.studyPartners.studyPartners,
+        location: state.ui.locationValue,
+        sessionStarted: state.session.sessionStarted,
+        sessionStartTime: state.session.sessionStartTime,
+        flashMessage: state.homeFlash.flashMessage,
+        subMessage: state.homeFlash.subMessage,
+        isError: state.homeFlash.isError,
+        showMessage: state.homeFlash.showMessage,
+        userId: state.auth.userId,
+        userName: state.auth.name
     }
 }
 
 const mapDispatchToProps = dispatch => {
-    return{
+    return {
         onAddTaskHandler: () => dispatch(actions.addTask()),
         onRemoveTaskHandler: (id) => dispatch(actions.removeTask(id)),
-        onTaskInputChanged: (id, newValue, value) => dispatch(actions.updateInput(id,newValue,value)),
-        onUrgencyChanged: (id, value) => dispatch(actions.updateUrgency(id, value))
+        onTaskInputChanged: (id, newValue, value) => dispatch(actions.updateInput(id, newValue, value)),
+        onUrgencyChanged: (id, value) => dispatch(actions.updateUrgency(id, value)),
+        onSaveSession: (tasks, studyPartners, location, started, time, userId) => dispatch(actions.saveSession(tasks, studyPartners, location, started, time, userId)),
+        onCloseFlashMessage: () => dispatch(actions.removeFlashMessage()),
+        onSetFlashMessage: (isError, message, subMessage) => dispatch(actions.setFlashMessage(isError, message, subMessage)),
+        onStartSession: (tasks, partners, location, updateTime, time, userId) => dispatch(actions.startSession(tasks, partners, location, updateTime, time, userId)),
+        initStudyState: (userId) => dispatch(actions.initStudyState(userId)),
+        refreshStudyState: () => dispatch(actions.refreshStudyState()),
+        onLogout: () => dispatch(actions.logout()),
     }
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

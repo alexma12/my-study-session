@@ -1,0 +1,33 @@
+.FlashMessage{
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 1.5rem 4rem;
+    width: 100vw;
+    border-radius: .2rem;
+    z-index: 10;
+    font-size: 1.5rem;
+    text-align: center;
+    transition: 1s all;
+    margin-left: 2rem;
+    
+    &__success{
+        background-color: rgba(rgb(27, 163, 27),.85);
+    }
+
+    &__fail{
+        background-color: rgba(rgb(223, 45, 45),.85);
+    }
+
+    &__subMessage{
+        margin-left: .8rem;
+    }
+
+    &__button{
+        position: absolute;
+        right: 3rem;
+        margin-left: 2rem;
+        transform: translateY(.1rem);
+    }
+}
+

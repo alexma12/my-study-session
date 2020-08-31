@@ -6,10 +6,15 @@ import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import {createStore, combineReducers, applyMiddleware, compose} from "redux";
+import thunk from "redux-thunk";
 
 import uiReducer from "./store/reducers/userInput";
 import studyPartnersReducer from "./store/reducers/studyPartners";
 import tasksReducer from "./store/reducers/tasks";
+import homeFlashReducer from "./store/reducers/homeFlashMessages";
+import authFlashReducer from "./store/reducers/authFlashMessages";
+import sessionReducer from "./store/reducers/session";
+import authReducer from "./store/reducers/auth"
 
 import "./index.css";
 
@@ -18,9 +23,13 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
     ui: uiReducer,
     studyPartners: studyPartnersReducer,
-    tasks: tasksReducer
+    tasks: tasksReducer,
+    authFlash: authFlashReducer,
+    homeFlash: homeFlashReducer,
+    session: sessionReducer,
+    auth: authReducer
 })
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware()));
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <div>

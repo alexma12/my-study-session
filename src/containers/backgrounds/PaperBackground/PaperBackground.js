@@ -1,11 +1,18 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import {CSSTransition} from "react-transition-group";
 
+const PaperBackground = (props) => {
 
-const paperBackground = (props) => {
+    const [startAnim, setStartAnim] = useState(true);
 
+    useEffect(() => {
+        setTimeout(() => {
+            setStartAnim(true)
+        }, 400)
+    })
     return(
-        <div className = "PaperBackground">
-            <div className = "PaperBackground__lines">
+        <div className = "PaperBackground">   
+            <div  key = "lol" className = "PaperBackground__lines">
             <div className = "PaperBackground__text"> 
             {props.children}
             </div>
@@ -17,4 +24,4 @@ const paperBackground = (props) => {
     )
 }
 
-export default React.memo(paperBackground);
+export default React.memo(PaperBackground);
