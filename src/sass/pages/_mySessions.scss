@@ -1,0 +1,117 @@
+.MySessions{
+    padding: 3rem 5rem;
+    min-height: 100vh;
+    height: fit-content;
+
+    @media only screen and (max-width: 1330px){
+        padding: 2rem 2rem;
+    }
+
+    @media only screen and (max-width: 1230px){
+        padding: 0;
+    }
+
+    &__heading{
+        text-align: center;
+        margin-left: 13rem;
+        font-size: 4.5rem;
+
+        @media only screen and (max-width: 550px){
+            font-size: 4rem;
+        }
+    }
+
+    &__none{
+        grid-column: 2/3;
+        font-size: 3rem;
+        margin-top: 4rem;
+        height: 60vh;
+        padding-bottom: 2rem;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        text-align: center;
+        transform: skewY(.2deg);
+        text-transform: uppercase;
+        background-color: $color-yellow-sticky-light;
+        display: relative;
+        
+
+        & > * {
+            transform: skewY(-.2deg);
+        }
+
+        &::before{
+            content: "";
+            display: block;
+            position: relative;
+            width: 11rem;
+            top: -1.5rem;
+            left: -30.5rem;
+            height: 2.3rem;
+            background-color: $color-tape;
+            z-index: 4;
+            transform: rotate(-45deg);
+        }
+
+        &::after{
+            content: "";
+            display: block;
+            position: relative;
+            width: 11rem;
+            bottom: -4rem;
+            right: -30.5rem;
+            height: 2.3rem;
+            background-color: $color-tape;
+            z-index: 4;
+            transform: rotate(-45deg);
+        }
+    }
+}
+
+.Home-button{
+    transform: translateY(-3rem) translateX(-2.5rem);
+    border: none;
+    letter-spacing: .1rem;
+    background-color: rgba(rgb(87, 241, 95),.7);
+    clip-path: polygon(90% 0%, 100% 50%, 90% 100%, 0% 100%, 0 49%, 0% 0%);
+    width: 170%;
+    height: 4.3rem;
+    font-size: 1.3rem;
+    padding-right: 2rem;
+    outline: none; 
+    padding-top: .2rem;
+    font-family: inherit;
+    font-weight: 1000;
+
+    &:hover{
+        background-color: rgba(rgb(87, 241, 95),.9);
+    }
+
+    @media only screen and (max-width: 1330px){
+        width: 160%;
+        transform: translateY(-3rem) translateX(-.5rem);
+    }
+    @media only screen and (max-width: 1230px){
+        transform: translateY(-3rem) translateX(0);
+    }
+
+    @media only screen and (max-width: 750px){
+        width: 180%;
+        font-size: 1.5rem;
+    }
+
+    @media only screen and (max-width: 700px){
+        width: 190%;
+        font-size: 1.5rem;
+    }
+
+    @media only screen and (max-width: 600px){
+        width: 210%
+    }
+    @media only screen and (max-width: 500px){
+        width: 220%;
+    }
+
+
+}

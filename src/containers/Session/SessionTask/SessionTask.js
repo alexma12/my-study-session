@@ -1,6 +1,6 @@
 import React from "react";
 
-import {ReactComponent as Checkmark} from "../../imgs/svg/checkmark.svg";
+import {ReactComponent as Checkmark} from "../../../imgs/svg/checkmark.svg";
 
 const SessionTask = (props) => {
 

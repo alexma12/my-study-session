@@ -7,7 +7,8 @@ import * as actions from "./store/actions";
 
 import Auth from "./containers/Auth/Auth";
 import Home from "./containers/Home/Home";
-import Session from "./containers/Session/Session"
+import MySessions from "./containers/MySessions/MySessions";
+import Session from "./containers/Session/Session";
 
 const App = (props) => {
 
@@ -25,7 +26,8 @@ const App = (props) => {
     routes =
       <Switch>
         <Route path="/session" component={Session} />
-        <Route path="/" exact component={Home} />
+        <Route path="/my-sessions" component={MySessions} />
+        <Route path="/" component={Home} />
         <Redirect to="/" />
       </Switch>
   }

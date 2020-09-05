@@ -14,7 +14,8 @@ import tasksReducer from "./store/reducers/tasks";
 import homeFlashReducer from "./store/reducers/homeFlashMessages";
 import authFlashReducer from "./store/reducers/authFlashMessages";
 import sessionReducer from "./store/reducers/session";
-import authReducer from "./store/reducers/auth"
+import authReducer from "./store/reducers/auth";
+import mySessionsReducer from "./store/reducers/mySessions"
 
 import "./index.css";
 
@@ -27,7 +28,8 @@ const rootReducer = combineReducers({
     authFlash: authFlashReducer,
     homeFlash: homeFlashReducer,
     session: sessionReducer,
-    auth: authReducer
+    auth: authReducer,
+    mySessions: mySessionsReducer
 })
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 

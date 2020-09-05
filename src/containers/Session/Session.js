@@ -3,7 +3,7 @@ import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
 
 import EndSessionModal from "../Modal/EndSessionModal";
-import SessionTask from "../SessionTask/SessionTask";
+import SessionTask from "./SessionTask/SessionTask";
 
 import * as actions from "../../store/actions";
 
@@ -71,7 +71,7 @@ const Session = (props) => {
         urgent={task[0].urgent}
         important={task[0].important}
         finished={task[0].finished}
-        onFinish={() => props.onSetFinished(task[0].id, props.tasks)} />
+        onFinish={() => props.onSetFinished(task[0].id, props.tasks, props.userId)} />
     )
   })
 }
@@ -130,7 +130,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     initStudyState: (userId) => dispatch(actions.initStudyState(userId)),
-    onSetFinished: (id, tasks) => dispatch(actions.setFinished(id, tasks))
+    onSetFinished: (id, tasks, userId) => dispatch(actions.setFinished(id, tasks, userId))
   }
 }
 

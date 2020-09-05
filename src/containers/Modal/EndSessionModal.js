@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { CSSTransition } from "react-transition-group";
 import * as actions from "../../store/actions";
-import EndSessionTask from "../EndSessionTask/EndSessionTask";
+import EndSessionTask from "../Session/EndSessionTask/EndSessionTask";
 import Spinner from "../Spinner/Spinner";
 import FlashMessage from "../FlashMessage/FlashMessage";
 
@@ -66,14 +66,11 @@ const EndSessionModal = (props) => {
         finishButton = <Spinner />;
     }
 
-    // Flash Message
-
-
 
     // Study Partners 
 
     let studyPartners = null;
-    if (props.studyPartners) {
+    if (props.studyPartners.length > 0) {
         studyPartners = props.studyPartners.map((partner) => {
             return (<div key={partner.id} className="EndSessionModal__info--studyPartners-content"> {partner.name} </div>)
         })

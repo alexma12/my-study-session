@@ -9,6 +9,7 @@
 @import "./pages/auth";
 @import "./pages/home";
 @import "./pages/session";
+@import "./pages/mySessions";
 
 @import "./components/paperBackground";
 @import "./components/authSticky";
@@ -24,3 +25,5 @@
 @import "./components/spinner";
 @import "./components/endSessionModal";
 @import "./components/endSessionTask";
+@import "./components/mySessionSticky";
+@import "./components/mySessionTask";

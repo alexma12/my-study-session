@@ -1,6 +1,6 @@
 import React from "react";
 
-import {ReactComponent as DeleteIcon} from "../../imgs/svg/cross.svg"
+import {ReactComponent as DeleteIcon} from "../../../imgs/svg/cross.svg"
 
 const studyPartnerName = (props) => {
     return(

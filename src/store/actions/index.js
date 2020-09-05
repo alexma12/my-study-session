@@ -43,3 +43,7 @@ export {
     authCheckState,
     logout
 } from "./auth"
+
+export {
+    retrieveSessions
+} from "./mySessions"

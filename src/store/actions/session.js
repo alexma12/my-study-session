@@ -21,7 +21,6 @@ export const startSession = (tasks, partners, location, updateTime, prevTime, us
     return dispatch => {
 
         let currentSession = null;
-        console.log(userId);
 
         if (updateTime) {
             let d = new Date();
@@ -65,7 +64,6 @@ export const startSession = (tasks, partners, location, updateTime, prevTime, us
 
         axios.patch(`/${userId}/todaysSession.json`, currentSession)
             .then((response) => {
-                console.log(response);
             })
             .catch((error) => {
                 console.log(error);
@@ -79,12 +77,12 @@ export const finishedSession = (orderedtasks, studyPartners, location, start, en
         dispatch(endStateSession());
         const tasks = [...orderedtasks];
         const newTasks = [];
-        const sessionTasks = []
-        let totalTimeSpentInMins = 0;
+        const sessionTasks = [];
+
+
         for(let i = 0; i < tasks.length; i++){
             sessionTasks.push(tasks[i][0]);
             let totalTimeInMins = (+tasks[i][0].hr * 60) + +tasks[i][0].min;
-            totalTimeSpentInMins += totalTimeInMins;
             if(!tasks[i][0].finished){
                 let totalTimeSpentInMins = (+tasks[i][0].timeSpentHr* 60) + +tasks[i][0].timeSpentMin;
                 if(totalTimeSpentInMins >= totalTimeInMins){
@@ -94,11 +92,16 @@ export const finishedSession = (orderedtasks, studyPartners, location, start, en
                     tasks[i][0].hr = Math.floor((totalTimeInMins - totalTimeSpentInMins) / 60);
                     tasks[i][0].min = (totalTimeInMins - totalTimeSpentInMins) - tasks[i][0].hr * 60;
                 }
-                tasks[i][0].timeSpentHr = "";
-                tasks[i][0].timeSpentMin = "";
-                newTasks.push(tasks[i][0]); 
+
+                const task = {...tasks[i][0]};
+                task.timeSpentHr = ""
+                task.timeSpentMin = "";
+                newTasks.push(task);;
             }         
         }
+
+
+
         const newSession = {
             tasks: newTasks,
             location: "",
@@ -109,7 +112,6 @@ export const finishedSession = (orderedtasks, studyPartners, location, start, en
         }
         axios.patch(`/${userId}/todaysSession.json`, newSession)
         .then((response) => {
-            console.log(response);
         })
         .catch((error) => {
             console.log(error);
@@ -125,7 +127,7 @@ export const finishedSession = (orderedtasks, studyPartners, location, start, en
         
         axios.post(`/${userId}/sessions.json`, finishedSession)
         .then((response) => {
-            console.log(response);
+
         })
         .catch((error) => {
             console.log(error);

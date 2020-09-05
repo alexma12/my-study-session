@@ -1,7 +1,7 @@
 import React from "react";
-import { ReactComponent as LocationIcon } from "../../imgs/svg/location.svg";
+import { ReactComponent as LocationIcon } from "../../../imgs/svg/location.svg";
 import { connect } from "react-redux";
-import * as actions from "../../store/actions"
+import * as actions from "../../../store/actions"
 
 
 const LocationSticky = (props) => {

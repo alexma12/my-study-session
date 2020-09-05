@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { CSSTransition } from "react-transition-group";
-
 import FlipMove from 'react-flip-move';
 
 import FlashMessage from "../FlashMessage/FlashMessage"
 import PaperBackground from "../backgrounds/PaperBackground/PaperBackground";
-import LocationSticky from "../LocationSticky/LocationSticky";
-import StudyPartnersSticky from "../StudyPartnersSticky/StudyPartnersSticky";
-import TodoSticky from "../TodoSticky/TodoSticky";
+import LocationSticky from "./LocationSticky/LocationSticky";
+import StudyPartnersSticky from "./StudyPartnersSticky/StudyPartnersSticky";
+import TodoSticky from "./TodoSticky/TodoSticky";
 import HighlightButton from "../HighlightButton/HighlightButton.js";
 import StartSessionModal from "../Modal/StartSessionModal";
 
@@ -18,10 +17,6 @@ import { ReactComponent as PlusIcon } from "../../imgs/svg/cross.svg";
 
 import * as actions from "../../store/actions"
 
-
-
-const Month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-const Day = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 const Home = (props) => {
 
@@ -134,9 +129,6 @@ const Home = (props) => {
     const totalHours = Math.floor(totalTimeInMins / 60);
     const totalMins = totalTimeInMins - (totalHours * 60);
 
-    const date = new Date()
-    const dateString = `${Day[date.getDay()]}, ${Month[date.getMonth()]} ${date.getDate()} `;
-
     // Flash Message // 
 
     return (
@@ -160,17 +152,16 @@ const Home = (props) => {
             <PaperBackground>
                 <CSSTransition in={startAnim} classNames="fade" mountOnEnter timeout={1000}>
                     <div>
-                    <button className = "MySessions" onClick={logoutHandler}> MY SESSIONS </button>
-                    <button className = "Logout" onClick={logoutHandler}> LOGOUT </button>
+                        <button className="MySessions__button" onClick={() => props.history.push("/my-sessions")}> My Sessions </button>
                     </div>
                 </CSSTransition>
                 <CSSTransition in={startAnim} classNames="fadeDown" mountOnEnter timeout={0}>
                     <div key="heading" className="heading-1 u-grid-column-2-3 u-justify-self-center u-margin-top-small">Study Session</div>
                 </CSSTransition>
                 <CSSTransition in={startAnim} classNames="fade" mountOnEnter timeout={0} >
-                    <div className="NameAndDate">
-                        <div className="Name"> {props.userName} </div>
-                        <div className="Date">{dateString} </div>
+                    <div className="NameAndLogout">
+                         <button className="Logout_button" onClick={logoutHandler}> Logout </button> 
+                         <div className="Name"> {props.userName} </div>
                     </div>
                 </CSSTransition>
                 <CSSTransition in={startAnim} classNames="fade" mountOnEnter timeout={0}>
@@ -185,7 +176,7 @@ const Home = (props) => {
                             <div>
                                 <span className="Tasks__heading--text">
                                     Today's Session
-                            </span>
+                                </span>
                                 <TaskLiskIcon className="Tasks__icon--right" />
                             </div>
                             <ClockIcon className="Tasks__icon--left" />

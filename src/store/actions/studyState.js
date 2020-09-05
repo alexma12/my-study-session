@@ -14,7 +14,6 @@ export const initStudyState = (userId) => {
         if(userId){
         axios.get(`/${userId}.json`)
         .then((response) => {
-            console.log(response);
             if(response.data.todaysSession.tasks){
                 dispatch(setStateTasks(response.data.todaysSession.tasks))
             }

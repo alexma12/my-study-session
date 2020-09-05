@@ -1,8 +1,24 @@
 .heading-1{
-    font-size: 5rem;
+    font-size: 4.5rem;
     transition: all 1s;
     animation: fadeInDown 1s ease-in 1s;
+    margin-left: 13rem;
     text-transform: uppercase;
+
+
+    @media only screen and (max-width: 750px){
+        margin-left: 10rem;
+    }
+
+    @media only screen and (max-width: 700px){
+        margin-left: 7rem;
+        font-size: 4rem;
+    }
+
+
+    @media only screen and (max-width: 530px){
+        font-size: 3.5rem;
+    }
 }
 
 .heading-2{

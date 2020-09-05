@@ -97,7 +97,7 @@ export const saveSession = (tasks, studyPartners, location, started, time, userI
     }
 }
 
-export const setFinished = (id, tasks) => {
+export const setFinished = (id, tasks, userId) => {
     return dispatch => {
         let updatedTasks = [...tasks];
         for(let i = 0; i < updatedTasks.length; i++){
@@ -105,13 +105,13 @@ export const setFinished = (id, tasks) => {
                 updatedTasks[i].finished =  !updatedTasks[i].finished;
             }
         }
-        axios.put("/todaysSession/tasks.json", updatedTasks)
+        axios.put(`/${userId}/todaysSession/tasks.json`, updatedTasks)
         .then(() =>
         {
             dispatch(setStateTasks(updatedTasks))
         })
         .catch((error) => {
-            console.log(error);
+            console.log(error)
         })
     }
 }

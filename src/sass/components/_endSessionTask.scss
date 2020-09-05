@@ -1,7 +1,7 @@
 .EndSessionTask{
     display: grid;
     width: 100%;
-    grid-template-columns: 45% 25% 30%;
+    grid-template-columns: 40% 25% 35%;
     font-size: 1.5rem;
     font-weight: 1000;
     align-items: center;
@@ -10,7 +10,11 @@
     margin-bottom: 0;
     padding-bottom: 2rem;
     border-bottom: .2rem solid rgb(184, 210, 250);
-    
+
+    @media only screen and (max-width: 690px){
+        grid-template-columns: 50% 50%
+    }
+
     &__value{
         font-size: 1.8rem;
         padding: 0 2.5rem;
@@ -25,6 +29,11 @@
         }
         &--green{
             color: $color-font-green;
+        }
+
+        @media only screen and (max-width: 690px){
+            grid-column: 1/3;
+            margin-bottom: 3rem;
         }
     }
 
@@ -50,6 +59,9 @@
                -webkit-appearance: none;
                margin: 0;
            }
+        }
+        @media only screen and (max-width: 690px){
+            grid-column: 2/3
         }
     }
     

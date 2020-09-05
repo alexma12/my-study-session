@@ -1,0 +1,32 @@
+.MySessionsTask{
+    display: grid;
+    grid-template-columns: 58% 42%;
+    margin-top: .8rem;
+    justify-content: center;
+    padding-bottom: .5rem;
+    align-items: center;
+    width: 95%;
+    margin-left: 2.5%;
+    
+    &:not(:last-child){
+        border-bottom: .1rem dotted rgb(168, 168, 168);
+    }
+
+    &__value{
+        &--blue{
+            color: $color-font-blue;
+        }
+
+        &--green{
+            color: $color-font-green;
+        }
+
+        &--yellow{
+            color: rgb(223, 223, 0);
+        }
+
+        &--red{
+            color: $color-font-red;
+        }
+    }
+}

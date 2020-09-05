@@ -1,9 +1,8 @@
 .AuthSticky{
-    grid-column: 2/3;
-    width: 90%;
+    grid-column: 2/-1;
+    width: 80%;
     height: 100%;
     z-index: 3;
-    margin-left: 5rem;
     margin-top: 2.5rem;
     justify-self: center;
     transform: skewX(2deg);
@@ -12,6 +11,15 @@
     border-radius: .2rem;
     animation: fadeIn 1s ease-in;
     transition: all 1s;
+
+    @media only screen and (max-width: 1000px){
+        margin-top: 5rem;
+    }
+
+    @media only screen and (max-width: 900px){
+        margin-top: 6rem;
+    }
+
 
     & > * {
         transform: skewX(-2deg);

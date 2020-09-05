@@ -50,9 +50,8 @@ export const keepLoggedIn = () => {
             grant_type: "refresh_token",
             refresh_token: localStorage.getItem("refreshToken")
         }
-        axios.post('https://securetoken.googleapis.com/v1/token?key=AIzaSyAUFEB5o9VVp9sdomXdiJwC887ZkDCkgSs', authData)
+        axios.post(`https://securetoken.googleapis.com/v1/token?key=${process.env.REACT_APP_API_CODE}`, authData)
             .then(response => {
-                console.log(response);
                 localStorage.setItem("token", response.data.id_token);
                 localStorage.setItem("userId", response.data.user_id);
                 localStorage.setItem("refreshToken", response.data.refresh_token);
@@ -94,7 +93,6 @@ export const initUserData = (userId, firstName, lastName) => {
         }
     instance.patch(`/${userId}.json`, userData)
         .then(response => {
-            console.log(response);
         })
         .catch(error => {
             console.log(error);
@@ -111,9 +109,9 @@ export const auth = (email, password, method, firstName = "", lastName = "") => 
         }
 
 
-        let url = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAUFEB5o9VVp9sdomXdiJwC887ZkDCkgSs";
+        let url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.REACT_APP_API_CODE}`;
         if(!method){
-            url = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAUFEB5o9VVp9sdomXdiJwC887ZkDCkgSs";
+            url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_API_CODE}`;
         }
         
         axios.post(url, authData)

@@ -4,11 +4,22 @@
     width: calc(100vw - 10rem);
     background-size: contain ;
     min-height: calc(100vh - 4rem);
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
     background: rgba(255,255,255,0.9);
     box-shadow: 2rem 2rem 1rem rgba(185, 184, 184, 0.3);
     font-size: 2rem;
 
+    @media only screen and (max-width: 1330px){
+        width: calc(100vw - 4rem);
+        margin-bottom: 2rem;
+    }
+
+    @media only screen and (max-width: 1230px){
+        width: 100vw;
+        margin-bottom: 0;
+        min-height: 100vh;
+        box-shadow: none;
+    }
 
     &::before {
         content: '';
@@ -25,7 +36,7 @@
         line-height: 2.5rem;
         outline: none;
         height: 100%;
-        grid-template-columns: 8rem minmax(min-content, 60rem) minmax(min-content, 12rem);
+        grid-template-columns: 10% minmax(min-content, 68.75%) minmax(min-content, 21.25%);
         grid-template-rows: repeat(auto-fill, 2.5rem);
     }
 
@@ -55,7 +66,7 @@
             top: 50%;
         }
         &--hole-bottom {
-            bottom: 5.5rem;     
+            bottom: 4.5rem;     
         }
     }
    

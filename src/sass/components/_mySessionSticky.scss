@@ -1,0 +1,176 @@
+.MySessionSticky{
+    background-color: rgb(253, 253, 193);
+    width: 100%;
+    grid-column: 2/3;
+    text-align: center;
+    margin-top: 4rem;
+    padding: .7rem;
+    padding-top: 0;
+    box-shadow: .5rem 1rem 1rem rgba(black, .1);
+    display: grid;
+    font-size: 1.8rem;
+    grid-template-columns: repeat(2, 50%);
+    text-transform: uppercase;
+
+    @media only screen and (max-width: 690px){
+        width: 90%;
+        margin-left: 3.5rem;
+    }
+
+    &__box{
+        grid-column: 2/-1;
+        display: grid;
+        grid-template-columns: 4% 92% 4%;
+        margin-bottom: 8rem;
+    }
+
+    &__info-box{
+        grid-column: 1/-1;
+        display: grid;
+        grid-template-columns: repeat(2, 50%);
+
+        @media only screen and (max-width: 690px){
+            grid-template-columns: 100%;
+        }
+    }
+
+    &__task-box{
+        grid-column: 1/-1;
+        display: grid;
+        grid-template-columns: repeat(2, 50%);
+
+        @media only screen and (max-width: 690px){
+            grid-template-columns: 100%;
+        }
+    }
+
+    &::before{
+        content: "";
+        display: block;
+        position: relative;
+        grid-column: 1/-1;
+        width: 11rem;
+        top: 88%;
+        left: -5%;
+        height: 2.3rem;
+        background-color: $color-tape;
+        z-index: 4;
+        transform: rotate(-45deg);
+
+        @media only screen and (max-width: 690px){
+            top: 100%;
+            left: -9%;
+        }
+    }
+
+    &::after{
+        content: "";
+        display: block;
+        position: relative;
+        grid-column: 1/-1;
+        top: -45%;
+        left: 88%;
+        width: 11rem;
+        height: 2.3rem; 
+        background-color: $color-tape;
+        z-index: 4;
+        transform: rotate(-45deg);
+        @media only screen and (max-width: 690px){
+            top: -30%;
+            left: 80%;
+        }
+    }
+
+    &__time {
+        grid-column: 1/-1;
+        font-size: 2.2rem;
+        padding-bottom: 2rem;
+        color:rgb(97, 143, 230);
+        @media only screen and (max-width: 690px){
+            font-size: 1.8rem;
+        }
+    }
+
+    &__location{
+        color: rgb(248, 173, 34);
+        &--label{
+            padding: 0 .5rem;
+            border-bottom: .2rem solid rgb(248, 173, 34);
+        }
+        &--content{
+            margin-top: 1rem;
+            font-size: 1.4rem;
+            @media only screen and (max-width: 690px){
+                font-size: 1.8rem;
+            }
+        }
+    }
+
+    &__studyPartners{
+        color: rgb(74, 179, 74);
+        @media only screen and (max-width: 690px){
+            font-size: 2rem;
+            margin-top: 2rem;
+        }
+        &--label{
+            padding: 0 .3rem;
+            border-bottom: .2rem solid rgb(74, 179, 74);
+        }
+
+        &--content{
+            margin-top: 1rem;
+            font-size: 1.4rem;
+
+            @media only screen and (max-width: 690px){
+                font-size: 1.8rem;
+            }
+        }
+    }
+
+    &__finishedTasks{
+        margin-top: 2rem;
+        color: green;
+
+        &--label {
+            padding: 0 .3rem;
+            border-bottom: .2rem solid green;
+        }
+
+        &--content{
+            margin-top: 1rem;
+            font-size: 1.4rem;
+            @media only screen and (max-width: 690px){
+                font-size: 2rem;
+            }
+        }
+    }
+
+    &__unfinishedTasks{
+        margin-top: 2rem;
+        color: red;
+
+        &--label {
+            padding: 0 .3rem;
+            border-bottom: .2rem solid red;
+        }
+
+        &--content{
+            margin-top: 1rem;
+            font-size: 1.4rem;
+            @media only screen and (max-width: 690px){
+                margin-top: 2rem;
+                font-size: 1.8rem;
+            }
+        }
+    }
+
+    &__timeSpent{
+        margin-top: 2.2rem;
+        grid-column: 1/-1;
+        font-size: 2.2rem;
+        color: rgb(180, 97, 180);
+        @media only screen and (max-width: 690px){
+            font-size: 1.8rem;
+        }
+    }
+}

@@ -1,12 +1,12 @@
 .StudyPartnersSticky{
-    background-image: linear-gradient(to bottom, $color-green-sticky, $color-green-sticky-dark);
+    background-color: $color-green-sticky;
     min-height: 8.3rem;
     grid-column: 2/-1;
     width: 93%;
     justify-self: start;
     align-self: start;
     margin-top: 4.4rem;
-    padding: 1rem;
+    padding: 1.3rem;
     transition: all 3s;
     box-shadow: 1rem 1rem 1rem rgba(black, .1);
     transform: skewX(.6deg) skewY(-.3deg);
@@ -28,6 +28,16 @@
         padding-top: .2rem;
         font-size: 1.6rem;
         font-family: inherit;
+
+        @media only screen and (max-width: 1420px){
+            margin-left: 1rem;
+        }
+
+
+        @media only screen and (max-width: 700px){
+            margin-left: 2rem;
+            width: 40%;
+        }
     }
 
     &::before{
@@ -54,6 +64,19 @@
             width: 1.5rem;
             transform: rotate(-45deg) translateY(.2rem) skewX(-.6deg) skewY(.3deg);
             transition: all .3s;
+
+            @media only screen and (max-width: 1420px){
+                width: 1.2rem;
+                height: 1.2rem;
+                margin-left: .5rem;
+            }
+
+
+            @media only screen and (max-width: 700px){
+                width: 1.5rem;
+                height: 1.5rem;
+                margin-left: 1rem;
+            }
 
             &:hover{
                 transform: rotate(-45deg) translateY(.2rem) scale(1.12) skewX(-.6deg) skewY(.3deg);

@@ -2,10 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 
 import StudyPartnerName from "./StudyPartnerName";
-import { ReactComponent as UserIcon } from "../../imgs/svg/avatar.svg";
-import { ReactComponent as PlusIcon } from "../../imgs/svg/cross.svg"
+import { ReactComponent as UserIcon } from "../../../imgs/svg/avatar.svg";
+import { ReactComponent as PlusIcon } from "../../../imgs/svg/cross.svg"
 
-import * as actions from "../../store/actions";
+import * as actions from "../../../store/actions";
 
 
 const StudyPartnerSticky = (props) => {
